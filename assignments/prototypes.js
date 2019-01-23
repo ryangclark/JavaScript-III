@@ -143,3 +143,67 @@ Humanoid.prototype.greet = function() {
   // * Create Villain and Hero constructor functions that inherit from the Humanoid constructor function.  
   // * Give the Hero and Villains different methods that could be used to remove health points from objects which could result in destruction if health gets to 0 or drops below 0;
   // * Create two new objects, one a villain and one a hero and fight it out with methods!
+
+function Villain(villainArguments) {
+  Humanoid.call(this, villainArguments);
+  this.diabolicalDesire = villainArguments.diabolicalDesire;
+  this.evilCackle = villainArguments.evilCackle;
+  this.minions = villainArguments.minions;
+};
+
+Villain.prototype = Object.create(Humanoid.prototype);
+
+function Hero(heroArguments) {
+  Humanoid.call(this, heroArguments);
+  this.sidekick = heroArguments.sidekick;
+};
+
+Hero.prototype = Object.create(Humanoid.prototype);
+
+// Create Villain and Hero
+const sideEffects = new Villain({
+  createdAt: new Date(),
+  diabolicalDesire: 'For you to feel better, but with some new problems',
+  dimensions: {
+    length: 0.5,
+    width: 0.5,
+    height: 0.5
+  },
+  evilCackle: 'Your own moans',
+  healthPoints: 8,
+  language: 'Pain',
+  minions: [
+    'Peter',
+    'Paul',
+    'Mary'
+  ],
+  name: 'Side Effects',
+  team: 'Unwellness',
+  weapons: [
+    'Fatigue',
+    'Dry Mouth'
+  ]
+});
+
+const nurse = new Hero({
+  createdAt: new Date(),
+  dimensions: {
+    length: 1,
+    width: 2,
+    height: 3
+  },
+  healthPoints: 12,
+  language: 'Medical Jargon',
+  name: 'Bart',
+  sidekick: 'Hand Sanitizer',
+  team: 'Hobbiton General',
+  weapons: [
+    'Gauze',
+    'Patience'
+  ]
+});
+
+// ——— Villain & Hero Tests –––
+console.log('––– Villain and Hero Tests –––');
+console.log(sideEffects.minions);
+console.log(nurse.weapons);
